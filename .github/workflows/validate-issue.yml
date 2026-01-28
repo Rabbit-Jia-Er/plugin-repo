@@ -9,10 +9,12 @@ on:
 jobs:
   validate:
     # 触发条件：
-    # 1. Issue 创建/编辑且有 plugin-submission 标签
-    # 2. 评论包含 /recheck 命令
+    # 1. Issue 创建且标题以 [Plugin] 开头（模板自动添加）
+    # 2. Issue 编辑/添加标签且有 plugin-submission 标签
+    # 3. 评论包含 /recheck 命令且有 plugin-submission 标签
     if: |
-      (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'plugin-submission')) ||
+      (github.event_name == 'issues' && github.event.action == 'opened' && startsWith(github.event.issue.title, '[Plugin]')) ||
+      (github.event_name == 'issues' && github.event.action != 'opened' && contains(github.event.issue.labels.*.name, 'plugin-submission')) ||
       (github.event_name == 'issue_comment' && 
        contains(github.event.issue.labels.*.name, 'plugin-submission') &&
        contains(github.event.comment.body, '/recheck'))
