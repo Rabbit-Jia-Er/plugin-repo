@@ -6,7 +6,7 @@ on:
 
 jobs:
   approve:
-    if: |
+    if: >-
       contains(github.event.issue.labels.*.name, 'plugin-submission') &&
       contains(github.event.issue.labels.*.name, 'validated') &&
       contains(github.event.comment.body, '/approve')
@@ -138,7 +138,7 @@ jobs:
             });
 
   reject:
-    if: |
+    if: >-
       contains(github.event.issue.labels.*.name, 'plugin-submission') &&
       startsWith(github.event.comment.body, '/reject')
     runs-on: ubuntu-latest
