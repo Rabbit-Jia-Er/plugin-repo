@@ -6467,7 +6467,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "视频生成插件(mai-video-plugin)",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "description": "兼容 多种视频生成模型 API 的麦麦视频生成插件，支持文生视频与图生视频",
       "author": {
         "name": "Fooloyster",
@@ -6481,13 +6481,20 @@
       "repository_url": "https://github.com/FoolOyster/mai-video-plugin",
       "keywords": [
         "video",
-        "ai",
-        "multimedia"
+        "generation",
+        "视频生成",
+        "内容生成",
+        "text-to-video",
+        "文生视频",
+        "image-to-video",
+        "图生视频",
+        "AI",
+        "multimedia",
+        "多媒体"
       ],
       "categories": [
-        "Video",
-        "Multimedia",
-        "Entertainment"
+        "内容生成",
+        "多媒体"
       ],
       "default_locale": "CN",
       "locales_path": "_locales"
@@ -6883,6 +6890,90 @@
         ]
       },
       "id": "mmmpipi.MaiBot-At-Plugin"
+    }
+  },
+  {
+    "id": "sansenjian.quick-e2b-sandbox",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "Quick E2B 云沙箱",
+      "version": "1.0.10",
+      "description": "使用 E2B 云端沙箱安全执行 Python 代码。支持数据分析、网络爬虫、图表绘制、文件操作等多种场景。提供隔离的执行环境，确保代码安全运行，支持自动安装依赖包。",
+      "author": {
+        "name": "sansenjian",
+        "url": "https://github.com/sansenjian"
+      },
+      "license": "MIT",
+      "host_application": {
+        "min_version": "0.11.6"
+      },
+      "homepage_url": "https://github.com/sansenjian/quick-e2b-sandbox",
+      "repository_url": "https://github.com/sansenjian/quick-e2b-sandbox",
+      "categories": [
+        "Utility Tools"
+      ],
+      "keywords": [
+        "code",
+        "sandbox",
+        "python",
+        "e2b",
+        "execution",
+        "data-analysis",
+        "security"
+      ],
+      "id": "sansenjian.quick-e2b-sandbox"
+    }
+  },
+  {
+    "id": "Mettafy.bilibili_video_parser",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "B站视频解析插件",
+      "version": "1.0.0",
+      "description": "解析B站视频内容并生成AI总结，支持视频抽帧、字幕获取、ASR识别，让麦麦能像人类一样理解视频",
+      "author": {
+        "name": "约瑟夫.k && 白泽",
+        "url": "https://github.com/Mettafy"
+      },
+      "license": "AGPL-3.0-or-later",
+      "keywords": [
+        "bilibili",
+        "B站",
+        "视频解析",
+        "视频总结",
+        "AI总结",
+        "VLM",
+        "字幕",
+        "ASR"
+      ],
+      "categories": [
+        "media",
+        "ai",
+        "utility"
+      ],
+      "host_application": {
+        "min_version": "0.11.0"
+      },
+      "homepage_url": "https://github.com/Mettafy/bilibili_video_parser",
+      "repository_url": "https://github.com/Mettafy/bilibili_video_parser",
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "event_handler",
+        "components": [
+          {
+            "type": "event_handler",
+            "name": "bilibili_auto_detect",
+            "description": "自动检测并解析B站视频链接"
+          },
+          {
+            "type": "command",
+            "name": "bili",
+            "description": "手动触发B站视频解析",
+            "pattern": "/bili"
+          }
+        ]
+      },
+      "id": "MaiBot.bilibili_video_parser"
     }
   }
 ]
