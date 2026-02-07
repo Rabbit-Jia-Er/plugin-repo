@@ -2826,7 +2826,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "Gemini 绘图",
-      "version": "1.7.8",
+      "version": "1.7.9",
       "description": "使用 Google Gemini API或着其他第三方平台提供的绘图服务，根据图片和提示词生成新图片。（现已支持视频生成）",
       "author": {
         "name": "sakura桜花",
@@ -5335,7 +5335,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "A_Mind 智能话题管理插件",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "description": "基于大模型的智能话题发起、追踪和回复插件，支持权限控制和自动状态管理",
       "author": {
         "name": "A-Dawn",
@@ -5420,7 +5420,10 @@
           "权限控制系统",
           "大模型集成",
           "自动状态检查",
-          "调试功能支持"
+          "调试功能支持",
+          "话题捕捉与主动介入",
+          "多API密钥轮询",
+          "高级话题策略"
         ]
       },
       "id": "ARC.A_Mind"
@@ -6143,7 +6146,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "A_Memorix",
-      "version": "0.2.3",
+      "version": "0.3.0",
       "description": "轻量级知识库插件 - 基于双路检索的完全独立的记忆增强系统，优化低资源环境下的知识存储与检索",
       "author": {
         "name": "A_Dawn"
@@ -6258,6 +6261,16 @@
             "type": "boolean",
             "default": true,
             "description": "是否启用并行检索"
+          },
+          "relation_semantic_fallback": {
+            "type": "boolean",
+            "default": true,
+            "description": "是否启用关系查询的语义回退"
+          },
+          "relation_fallback_min_score": {
+            "type": "number",
+            "default": 0.3,
+            "description": "关系语义回退的最小相似度阈值"
           }
         },
         "threshold": {
@@ -6413,6 +6426,90 @@
             },
             "default": [],
             "description": "聊天流 ID 列表。支持格式: 1. 纯数字 (兼容模式); 2. 显式指定: 'group:12345'(群号), 'user:10001'(私聊), 'stream:hash'(流ID)"
+          }
+        },
+        "memory": {
+          "half_life_hours": {
+            "type": "number",
+            "default": 24,
+            "description": "记忆强度半衰期 (小时)"
+          },
+          "base_decay_interval_hours": {
+            "type": "number",
+            "default": 1,
+            "description": "衰减任务执行间隔 (小时)"
+          },
+          "prune_threshold": {
+            "type": "number",
+            "default": 0.1,
+            "description": "记忆遗忘(冷冻)阈值"
+          },
+          "freeze_duration_hours": {
+            "type": "number",
+            "default": 0.01,
+            "description": "记忆冷冻保留期 (小时)"
+          },
+          "enable_auto_reinforce": {
+            "type": "boolean",
+            "default": true,
+            "description": "是否启用自动强化"
+          },
+          "reinforce_buffer_max_size": {
+            "type": "integer",
+            "default": 1000,
+            "description": "强化缓冲区最大大小"
+          },
+          "reinforce_cooldown_hours": {
+            "type": "number",
+            "default": 1,
+            "description": "同一记忆强化的冷却时间"
+          },
+          "max_weight": {
+            "type": "number",
+            "default": 10,
+            "description": "记忆最大权重限制"
+          },
+          "revive_boost_weight": {
+            "type": "number",
+            "default": 0.5,
+            "description": "复活时的基础增强权重"
+          },
+          "auto_protect_ttl_hours": {
+            "type": "number",
+            "default": 24,
+            "description": "复活/强化后的自动保护时长"
+          },
+          "min_active_weight_protected": {
+            "type": "number",
+            "default": 0.5,
+            "description": "保护期内记忆的最低权重地板"
+          },
+          "enabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "V5记忆系统总开关"
+          },
+          "orphan": {
+            "type": "object",
+            "properties": {
+              "enable_soft_delete": {
+                "type": "boolean",
+                "default": true
+              },
+              "entity_retention_days": {
+                "type": "number",
+                "default": 7
+              },
+              "paragraph_retention_days": {
+                "type": "number",
+                "default": 7
+              },
+              "sweep_grace_hours": {
+                "type": "number",
+                "default": 24
+              }
+            },
+            "description": "孤立数据管理配置 (软删除与自动清理)"
           }
         }
       },
@@ -6981,7 +7078,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "MaiBot强兼Astrbook",
-      "version": "1.3.3",
+      "version": "1.3.8",
       "description": "让 MaiBot 通过 HTTP API + WebSocket 接入 AstrBook 论坛：浏览/搜索/阅读帖子、发帖/回帖、实时通知、定时逛帖与跨会话记忆。",
       "author": {
         "name": "薄暝",
@@ -7008,6 +7105,8 @@
         "plugin_type": "integration",
         "features": [
           "Planner Actions: browse/read/search/create/reply/notifications",
+          "Planner Actions: like_content + block management + profile/exp",
+          "后台自动回复/逛帖可选自主点赞与拉黑（点赞默认开启，拉黑默认关闭）",
           "WebSocket 实时通知（reply/sub_reply/mention）",
           "定时逛帖（最多回帖 1 次/次）",
           "跨会话论坛记忆（JSON 持久化）"
