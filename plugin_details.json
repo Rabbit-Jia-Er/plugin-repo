@@ -6146,7 +6146,7 @@
     "manifest": {
       "manifest_version": 1,
       "name": "A_Memorix",
-      "version": "0.3.1",
+      "version": "0.3.3",
       "description": "轻量级知识库插件 - 基于双路检索的完全独立的记忆增强系统，优化低资源环境下的知识存储与检索",
       "author": {
         "name": "A_Dawn"
@@ -6364,7 +6364,7 @@
           "model_name": {
             "type": "string",
             "default": "auto",
-            "description": "总结使用的模型名称"
+            "description": "总结使用的模型选择器（支持 auto/任务名/模型名；也可在配置文件中使用数组）"
           },
           "context_length": {
             "type": "integer",
@@ -7149,6 +7149,91 @@
           }
         ]
       }
+    }
+  },
+  {
+    "id": "fsqhn.bgg_search_plugin",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "桌游搜索插件 (bgg_search_plugin)",
+      "version": "0.0.3",
+      "description": "利用 DDGS 和 LLM 查询桌游英文名，然后从 BGG 网站获取游戏的相关基本信息",
+      "author": {
+        "name": "山上的小丘",
+        "url": "https://github.com/fsqhn"
+      },
+      "license": "GPL-v3.0-or-later",
+      "host_application": {
+        "min_version": "0.10.0"
+      },
+      "homepage_url": "https://github.com/fsqhn/maibot-bgg-plugin",
+      "repository_url": "https://github.com/fsqhn/maibot-bgg-plugin",
+      "keywords": [
+        "桌游",
+        "DuckDuckGo",
+        "search",
+        "boardgame",
+        "bgg"
+      ],
+      "categories": [
+        "Utility Tools",
+        "Other",
+        "Entertainment & Interaction"
+      ],
+      "plugin_info": {
+        "is_built_in": false,
+        "plugin_type": "Other",
+        "components": [
+          {
+            "type": "command",
+            "name": "boardgame",
+            "description": "查询桌游相关信息",
+            "pattern": "/桌游"
+          },
+          {
+            "type": "command",
+            "name": "boardgame_register",
+            "description": "登记或删除桌游中英文名",
+            "pattern": "/桌游登记"
+          },
+          {
+            "type": "tool",
+            "name": "boardgame_query",
+            "description": "供 LLM 调用的工具：根据桌游名称查询 BGG 详细信息（支持中文名/英文名/黑话）"
+          }
+        ]
+      },
+      "id": "fsqhn.bgg_search_plugin"
+    }
+  },
+  {
+    "id": "HyperSharkawa.maibot-character-sketch-plugin",
+    "manifest": {
+      "manifest_version": 1,
+      "name": "人物画像",
+      "version": "1.0.0",
+      "description": "根据聊天记录，为其他聊天用户生成详细的人格画像",
+      "author": {
+        "name": "鲨鱼",
+        "url": "https://github.com/HyperSharkawa"
+      },
+      "homepage_url": "https://github.com/HyperSharkawa/maibot-character-sketch-plugin",
+      "repository_url": "https://github.com/HyperSharkawa/maibot-character-sketch-plugin",
+      "license": "GPLv3",
+      "host_application": {
+        "min_version": "0.11.6"
+      },
+      "keywords": [
+        "画像",
+        "人格",
+        "分析"
+      ],
+      "categories": [
+        "Entertainment & Interaction",
+        "Data Analysis & Insights"
+      ],
+      "default_locale": "CN",
+      "locales_path": "_locales"
     }
   }
 ]
